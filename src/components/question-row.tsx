@@ -4,6 +4,7 @@ import { ArrowRight, Building2, ThumbsUp } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { cn, formatVotes, getDifficultyColor, getTypeColor } from "@/lib/utils";
+import { useVoteStore } from "@/stores/vote-store";
 import type { Question } from "@/types/question";
 import { DIFFICULTY_LABELS } from "@/types/question";
 
@@ -14,6 +15,11 @@ interface QuestionRowProps {
 export function QuestionRow({ question }: QuestionRowProps) {
   const difficultyColors = getDifficultyColor(question.difficulty);
   const typeColors = getTypeColor(question.type);
+
+  // Subscribe to the specific vote state for this question
+  const voteState = useVoteStore((state) => state.votes[question.id] ?? null);
+  const voteAdjustment = voteState === "up" ? 1 : voteState === "down" ? -1 : 0;
+  const adjustedVotes = question.votes + voteAdjustment;
 
   return (
     <Link
@@ -65,11 +71,11 @@ export function QuestionRow({ question }: QuestionRowProps) {
           <div
             className={cn(
               "flex items-center gap-1 font-medium tabular-nums",
-              question.votes >= 0 ? "text-easy" : "text-hard",
+              adjustedVotes >= 0 ? "text-easy" : "text-hard",
             )}
           >
             <ThumbsUp className="h-3.5 w-3.5" />
-            {formatVotes(question.votes)}
+            {formatVotes(adjustedVotes)}
           </div>
         </div>
       </div>
@@ -107,11 +113,11 @@ export function QuestionRow({ question }: QuestionRowProps) {
         <div
           className={cn(
             "flex items-center justify-center gap-1 text-sm font-semibold tabular-nums",
-            question.votes >= 0 ? "text-easy" : "text-hard",
+            adjustedVotes >= 0 ? "text-easy" : "text-hard",
           )}
         >
           <ThumbsUp className="h-3.5 w-3.5" />
-          {formatVotes(question.votes)}
+          {formatVotes(adjustedVotes)}
         </div>
         <div className="flex items-center gap-1.5 text-sm text-muted-foreground min-w-0">
           <Building2 className="h-3.5 w-3.5 shrink-0" />
