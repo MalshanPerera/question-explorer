@@ -1,5 +1,6 @@
 import { Code2, Sparkles } from "lucide-react";
 import { QuestionList } from "@/components/question-list";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { getAllCompanies, getAllQuestions } from "@/lib/questions";
 
 export default function HomePage() {
@@ -18,15 +19,18 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <header className="flex flex-col gap-4">
-            <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
-                <Code2 className="h-6 w-6" />
+            <div className="flex items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
+                  <Code2 className="h-6 w-6" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                    Question Explorer
+                  </h1>
+                </div>
               </div>
-              <div>
-                <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-                  Question Explorer
-                </h1>
-              </div>
+              <ThemeToggle />
             </div>
             <p className="max-w-2xl text-lg text-muted-foreground">
               Browse and practice{" "}
