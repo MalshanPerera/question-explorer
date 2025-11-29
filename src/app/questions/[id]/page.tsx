@@ -1,11 +1,12 @@
-import { ArrowLeft, Building2, Code2, Hash, ThumbsUp } from "lucide-react";
+import { ArrowLeft, Building2, Code2, Hash } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CodeEditor } from "@/components/code-editor";
 import { Badge } from "@/components/ui/badge";
+import { VoteButtons } from "@/components/vote-buttons";
 import { getAllQuestions, getQuestionById } from "@/lib/questions";
-import { cn, formatVotes, getDifficultyColor, getTypeColor } from "@/lib/utils";
+import { cn, getDifficultyColor, getTypeColor } from "@/lib/utils";
 import type { QuestionType } from "@/types/question";
 import { DIFFICULTY_LABELS } from "@/types/question";
 
@@ -90,42 +91,47 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
         <article className="rounded-2xl border border-border/60 bg-card shadow-sm">
           {/* Header */}
           <header className="border-b border-border/50 p-6 sm:p-8">
-            <h1 className="text-2xl font-bold text-foreground sm:text-3xl leading-tight">
-              {question.title}
-            </h1>
+            <div className="flex gap-4 sm:gap-6">
+              {/* Title and Metadata */}
+              <div className="flex-1 min-w-0">
+                <h1 className="text-2xl font-bold text-foreground sm:text-3xl leading-tight">
+                  {question.title}
+                </h1>
 
-            {/* Metadata */}
-            <div className="mt-5 flex flex-wrap items-center gap-3">
-              <Badge
-                variant="outline"
-                className={cn(
-                  "font-semibold text-sm px-3 py-1",
-                  difficultyColors.bg,
-                  difficultyColors.text,
-                  difficultyColors.border,
-                )}
-              >
-                {DIFFICULTY_LABELS[question.difficulty]}
-              </Badge>
-              <Badge
-                variant="outline"
-                className={cn(
-                  "font-semibold text-sm px-3 py-1 capitalize",
-                  typeColors.bg,
-                  typeColors.text,
-                  typeColors.border,
-                )}
-              >
-                {question.type}
-              </Badge>
-              <div
-                className={cn(
-                  "flex items-center gap-1.5 text-sm font-semibold",
-                  question.votes >= 0 ? "text-easy" : "text-hard",
-                )}
-              >
-                <ThumbsUp className="h-4 w-4" />
-                {formatVotes(question.votes)} votes
+                {/* Metadata */}
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <Badge
+                    variant="outline"
+                    className={cn(
+                      "font-semibold text-sm px-3 py-1",
+                      difficultyColors.bg,
+                      difficultyColors.text,
+                      difficultyColors.border,
+                    )}
+                  >
+                    {DIFFICULTY_LABELS[question.difficulty]}
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className={cn(
+                      "font-semibold text-sm px-3 py-1 capitalize",
+                      typeColors.bg,
+                      typeColors.text,
+                      typeColors.border,
+                    )}
+                  >
+                    {question.type}
+                  </Badge>
+                </div>
+              </div>
+
+              {/* Vote Buttons */}
+              <div className="shrink-0">
+                <VoteButtons
+                  questionId={question.id}
+                  baseVotes={question.votes}
+                  orientation="vertical"
+                />
               </div>
             </div>
           </header>
