@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CodeEditor } from "@/components/code-editor";
+import { CompletionButton } from "@/components/completed-checkbox";
 import { Badge } from "@/components/ui/badge";
 import { VoteButtons } from "@/components/vote-buttons";
 import { getAllQuestions, getQuestionById } from "@/lib/questions";
@@ -114,14 +115,20 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                   <Badge
                     variant="outline"
                     className={cn(
-                      "font-semibold text-sm px-3 py-1 capitalize",
+                      "font-semibold text-sm px-3 py-1",
                       typeColors.bg,
                       typeColors.text,
                       typeColors.border,
+                      question.type === "sql" ? "uppercase" : "capitalize",
                     )}
                   >
                     {question.type}
                   </Badge>
+                </div>
+
+                {/* Completion Button */}
+                <div className="mt-4">
+                  <CompletionButton questionId={question.id} />
                 </div>
               </div>
 

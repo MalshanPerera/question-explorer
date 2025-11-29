@@ -1,4 +1,5 @@
 import { Code2, Sparkles } from "lucide-react";
+import { ProgressStats } from "@/components/progress-stats";
 import { QuestionList } from "@/components/question-list";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { getAllCompanies, getAllQuestions } from "@/lib/questions";
@@ -41,8 +42,9 @@ export default function HomePage() {
               find your next challenge.
             </p>
 
-            {/* Stats */}
-            <div className="mt-4 flex flex-wrap items-center gap-6">
+            {/* Stats Row */}
+            <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
+              {/* Difficulty Stats */}
               <div className="flex items-center gap-2 text-sm">
                 <Sparkles className="h-4 w-4 text-easy" />
                 <span className="text-muted-foreground">
@@ -70,6 +72,12 @@ export default function HomePage() {
                   Hard
                 </span>
               </div>
+
+              {/* Divider */}
+              <div className="hidden sm:block h-4 w-px bg-border" />
+
+              {/* Progress Stats */}
+              <ProgressStats totalQuestions={questions.length} />
             </div>
           </header>
         </div>

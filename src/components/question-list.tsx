@@ -2,10 +2,11 @@
 
 import { Filter, SearchX, SlidersHorizontal, X } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
-import { Filters } from "@/components/filters";
+import { Filters, type StatusFilter } from "@/components/filters";
 import { QuestionRow } from "@/components/question-row";
 import { SearchBar } from "@/components/search-bar";
 import { type SortOption, SortSelect } from "@/components/sort-select";
+import { useProgressStore } from "@/stores/progress-store";
 import type { Question } from "@/types/question";
 
 interface QuestionListProps {
@@ -18,7 +19,11 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
   const [difficulty, setDifficulty] = useState("");
   const [type, setType] = useState("");
   const [company, setCompany] = useState("");
+  const [status, setStatus] = useState<StatusFilter>("all");
   const [sort, setSort] = useState<SortOption>("votes-desc");
+
+  // Get completed questions from store
+  const completed = useProgressStore((state) => state.completed);
 
   // Filter and sort questions
   const filteredQuestions = useMemo(() => {
@@ -33,6 +38,13 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
           q.summary.toLowerCase().includes(searchLower) ||
           q.company.toLowerCase().includes(searchLower),
       );
+    }
+
+    // Status filter
+    if (status === "completed") {
+      result = result.filter((q) => completed[q.id] === true);
+    } else if (status === "incomplete") {
+      result = result.filter((q) => !completed[q.id]);
     }
 
     // Difficulty filter
@@ -73,7 +85,7 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
     });
 
     return result;
-  }, [questions, search, difficulty, type, company, sort]);
+  }, [questions, search, difficulty, type, company, status, sort, completed]);
 
   const handleSearchChange = useCallback((value: string) => {
     setSearch(value);
@@ -84,13 +96,19 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
     setDifficulty("");
     setType("");
     setCompany("");
+    setStatus("all");
     setSort("votes-desc");
   }, []);
 
-  const hasActiveFilters = search || difficulty || type || company;
-  const activeFilterCount = [search, difficulty, type, company].filter(
-    Boolean,
-  ).length;
+  const hasActiveFilters =
+    search || difficulty || type || company || status !== "all";
+  const activeFilterCount = [
+    search,
+    difficulty,
+    type,
+    company,
+    status !== "all" ? status : "",
+  ].filter(Boolean).length;
 
   return (
     <div className="flex flex-col gap-6">
@@ -117,10 +135,12 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
                 difficulty={difficulty}
                 type={type}
                 company={company}
+                status={status}
                 companies={companies}
                 onDifficultyChange={setDifficulty}
                 onTypeChange={setType}
                 onCompanyChange={setCompany}
+                onStatusChange={setStatus}
               />
               <SortSelect value={sort} onChange={setSort} />
             </div>
@@ -161,7 +181,8 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
       {filteredQuestions.length > 0 ? (
         <div className="flex flex-col gap-3">
           {/* Desktop Header */}
-          <div className="hidden lg:grid lg:grid-cols-[1fr_90px_140px_70px_220px] lg:gap-6 lg:px-5 lg:text-sm lg:font-medium lg:text-muted-foreground">
+          <div className="hidden lg:grid lg:grid-cols-[24px_1fr_90px_140px_70px_220px] lg:gap-4 lg:px-5 lg:text-sm lg:font-medium lg:text-muted-foreground">
+            <span />
             <span>Question</span>
             <span>Difficulty</span>
             <span>Type</span>

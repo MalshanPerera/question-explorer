@@ -10,27 +10,50 @@ import {
 import type { Difficulty, QuestionType } from "@/types/question";
 import { DIFFICULTY_LABELS, QUESTION_TYPES } from "@/types/question";
 
+export type StatusFilter = "all" | "completed" | "incomplete";
+
 interface FiltersProps {
   difficulty: string;
   type: string;
   company: string;
+  status: StatusFilter;
   companies: string[];
   onDifficultyChange: (value: string) => void;
   onTypeChange: (value: string) => void;
   onCompanyChange: (value: string) => void;
+  onStatusChange: (value: StatusFilter) => void;
 }
 
 export function Filters({
   difficulty,
   type,
   company,
+  status,
   companies,
   onDifficultyChange,
   onTypeChange,
   onCompanyChange,
+  onStatusChange,
 }: FiltersProps) {
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+      <Select
+        value={status}
+        onValueChange={(val) => onStatusChange(val as StatusFilter)}
+      >
+        <SelectTrigger
+          className="w-full sm:w-[140px] h-10 bg-background"
+          aria-label="Filter by status"
+        >
+          <SelectValue placeholder="Status" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">All Status</SelectItem>
+          <SelectItem value="completed">Completed</SelectItem>
+          <SelectItem value="incomplete">Incomplete</SelectItem>
+        </SelectContent>
+      </Select>
+
       <Select
         value={difficulty || "all"}
         onValueChange={(val) => onDifficultyChange(val === "all" ? "" : val)}
