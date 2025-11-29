@@ -1,0 +1,76 @@
+qid,title,difficulty,type,sum(cu.vote),question_summary,company_asked
+2,Decreasing Comments,1,product metrics,49,How would you invest...,Bn International B.V.
+3,Employee Salaries,2,sql,142,Write a query to sel...,"Venesco, LLC."
+6,Find Bigrams,1,python,38,Find the bigrams in ...,Inversion
+7,Random Number,3,algorithms,-5,Given a stream of nu...,Coeadapt
+8,Upsell Transactions,2,sql,50,Write a query to get...,Hertz
+9,Boarding Times Bias,2,product metrics,12,A new airline came o...,Tactibit Technologies
+11,Swipe Precision,3,sql,10,Write a SQL query to...,Centeva
+12,Employee Salaries (ETL Error),2,sql,51,Write a query to get...,TUSHY
+15,Max Width,3,algorithms,7,Justify an array of ...,De Provincie Noord-Brabant
+20,Replace Words with Stems,2,python,17,Given a dictionary c...,Medallia
+21,Empty Neighborhoods,1,sql,98,Write a query that r...,Altimate AI
+33,Rider Discount,3,business case,5,You work as a data s...,Gamry Instruments
+37,"Liker's Likers",3,sql,13,Count the number of ...,Q2Ebanking
+38,Median Probability,3,statistics,29,Given three uniform(...,Aegon
+42,Find the Missing Number,1,algorithms,42,Find the missing int...,Aetna
+43,Biased five out of six,2,probability,15,Biased five out of s...,Forcepoint
+51,Two Cars,1,business case,0,A car starts driving...,Aflac Asset Management
+54,Rejection Reason,2,machine learning,28,How do we give each ...,AH Infotech LLC
+55,2nd Highest Salary,1,sql,131,Select the 2nd highe...,Sangoma
+57,Fake News Stories,2,business case,17,Mark Zuckerburg call...,Develop for Good
+60,Post Success,2,sql,41,Write a query to fin...,Aurora Flight Sciences Corporation
+65,Recurring Character,1,python,19,"Given a string, writ...",NYU Stern Center for Business and Human Rights
+70,Sample Time Series,2,sql,11,Given a transactions...,Qualified Staffing
+74,Random SQL Sample,2,sql,9,Write a query to ran...,County Executive Office
+76,Merge Sorted Lists,1,algorithms,43,Given two sorted lis...,Prosper Independent School District
+77,Ad Comments,2,sql,29,Write a query to get...,"Csaa Insurance Group, A Aaa Insurer"
+83,Search Ratings,2,analytics,45,Write a query to cre...,Acqueon
+84,Biggest Tip,1,python,19,Given two nonempty l...,Aftersell by Rokt
+85,Netflix Retention,3,product metrics,18,How do we measure th...,Mentium
+88,Scrambled Tickets,3,algorithms,17,Reconstruct the path...,Admarketplace
+90,Liked Pages,2,sql,50,Write a query to get...,Intelligent Payload Solutions
+92,Buy or Sell,2,python,26,Write a function to ...,Loadsure
+93,Search CTR,3,sql,9,We have a hypothesis...,Resulticks
+94,Second Ace,1,probability,2,"What's the probabili...",Ultimate Software
+95,SMS Confirmations,2,sql,0,SMS Confirmations...,Navitas Business Consulting Inc
+96,Recruiting Leads,2,analytics,1,How would you analyz...,"Apr Consulting, Inc."
+100,New Resumes,1,python,26,Write a function to ...,Team velocity
+104,Scrapers or Users,2,business case,6,How would you differ...,Revoco
+113,New Notification,3,analytics,-5,Write a query to dis...,Surepayroll
+114,Permutation Palindrome,2,algorithms,15,Determine whether th...,"audible, inc."
+116,Approval Drop,2,statistics,7,Determine the cause ...,Globaldata
+119,Estimating D,2,statistics,23,How would you estima...,Slingshot Aerospace
+124,Above Average Product Prices,2,sql,1,Above average produc...,OpenPipe
+125,Acquisition Threshold,2,python,-1,Write a Python funct...,Pinnacol
+126,N Dice,1,probability,22,Solve the probabilit...,24 Seven
+128,Equivalent Index,2,algorithms,21,Given a list of inte...,a software-first company
+131,Conversations Distribution,2,analytics,25,Write a query to get...,Sentar
+141,Credit Card Fraud Model,1,machine learning,5,Credit Card Fraud Mo...,Ultimate Kronos Group
+142,Lifetime Driver,2,business case,4,How would you use th...,Agil3Tech (A3T)
+143,Minimum Directional Path,3,algorithms,5,Determine the minimu...,Voyage Advisory
+149,Optimal Host,3,algorithms,13,Write a function to ...,Klimaatroute
+151,Prime to N,2,python,19,"Given an integer N, ...",The Npd Group
+154,Bernoulli Sample,3,algorithms,3,Write a function to ...,DashMart
+161,Location Feature Sharing,2,analytics,9,Is this feature actu...,Cgs federal
+166,Lifetime Plays,1,sql,9,Write a SQL query to...,Renown Regional Medical Center
+167,Sum to N,3,python,23,Given a list of inte...,Serve Robotics
+169,Rebalance Probabilities,2,machine learning,14,Rebalancing outcome ...,85SIXTY
+171,Marketing Channel Metrics,1,analytics,14,What metrics would y...,"Teragonia, Inc."
+183,Nightly Job,2,python,4,Find how much overla...,Uber
+184,Hundreds of Hypotheses,2,a/b testing,15,You are testing hund...,Bergmann
+185,Data Stream Median,3,algorithms,4,Write a function dat...,Brambles
+193,Choosing k,1,machine learning,7,choosing k value dur...,Kastech software solutions group
+194,Target Indices,2,algorithms,10,Given an array and a...,Reedtms Logistics
+196,Six Face Die,3,probability,0,Rolling a six sided ...,Crox Group
+202,Google Earth Storage,3,business case,5,Estimate the cost of...,Beelix
+204,Statistically Significant Test,1,a/b testing,6,Precisely ascertain ...,Intel AI Lab
+205,Assumptions of Linear Regression,2,machine learning,16,What are the assumpt...,Lord abbett & co.
+208,Regress Y on X,2,statistics,3,What are the regress...,Lord fairfax community college
+209,Repeat Job Postings,2,sql,43,Write a query to ret...,Nasa - National Aeronautics And Space Administration
+210,Normalize Grades,2,python,17,Given a list of tupl...,PostGrid
+215,A/B Test Power Size,1,statistics,15,Evaluate an A/B test...,Merit Personnel & Consulting
+217,Demand Metrics,2,business case,1,How would you identi...,Berkeley Lab
+220,Weighted Keys,2,python,15,Return keys with wei...,"Talentburst, An Inc 5000 Company"
+225,Decreasing Payments,2,product metrics,3,You notice that the ...,"Dataminr, Inc."
+227,Distance Traveled,1,sql,44,Distance Traveled...,Nurix Therapeutics
