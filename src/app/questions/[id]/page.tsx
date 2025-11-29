@@ -1,10 +1,12 @@
-import { ArrowLeft, Building2, Hash, ThumbsUp } from "lucide-react";
+import { ArrowLeft, Building2, Code2, Hash, ThumbsUp } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { CodeEditor } from "@/components/code-editor";
 import { Badge } from "@/components/ui/badge";
 import { getAllQuestions, getQuestionById } from "@/lib/questions";
 import { cn, formatVotes, getDifficultyColor, getTypeColor } from "@/lib/utils";
+import type { QuestionType } from "@/types/question";
 import { DIFFICULTY_LABELS } from "@/types/question";
 
 interface QuestionPageProps {
@@ -36,6 +38,21 @@ export async function generateStaticParams() {
   }));
 }
 
+function getDefaultLanguage(type: QuestionType): string {
+  switch (type) {
+    case "sql":
+      return "sql";
+    case "python":
+    case "algorithms":
+    case "machine learning":
+    case "statistics":
+    case "probability":
+      return "python";
+    default:
+      return "python";
+  }
+}
+
 export default async function QuestionPage({ params }: QuestionPageProps) {
   const { id } = await params;
   const question = getQuestionById(Number.parseInt(id, 10));
@@ -46,6 +63,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
 
   const difficultyColors = getDifficultyColor(question.difficulty);
   const typeColors = getTypeColor(question.type);
+  const defaultLanguage = getDefaultLanguage(question.type);
 
   return (
     <div className="min-h-screen bg-background">
@@ -67,7 +85,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
         </div>
       </div>
 
-      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8 space-y-6">
         {/* Question Content */}
         <article className="rounded-2xl border border-border/60 bg-card shadow-sm">
           {/* Header */}
@@ -155,6 +173,28 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
             </Link>
           </footer>
         </article>
+
+        {/* Code Editor Section */}
+        <section className="rounded-2xl border border-border/60 bg-card shadow-sm p-6 sm:p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
+              <Code2 className="h-5 w-5" />
+            </div>
+            <div>
+              <h2 className="text-lg font-semibold text-foreground">
+                Your Solution
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Write and test your solution below
+              </p>
+            </div>
+          </div>
+
+          <CodeEditor
+            questionId={question.id}
+            defaultLanguage={defaultLanguage}
+          />
+        </section>
       </div>
     </div>
   );
