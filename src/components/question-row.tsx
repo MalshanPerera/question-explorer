@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowRight, Building2, ThumbsUp } from "lucide-react";
+import { ArrowRight, Building2, ThumbsDown, ThumbsUp } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { cn, formatVotes, getDifficultyColor, getTypeColor } from "@/lib/utils";
@@ -53,10 +53,11 @@ export function QuestionRow({ question }: QuestionRowProps) {
           <Badge
             variant="outline"
             className={cn(
-              "font-medium capitalize",
+              "font-medium",
               typeColors.bg,
               typeColors.text,
               typeColors.border,
+              question.type === "sql" ? "uppercase" : "capitalize",
             )}
           >
             {question.type}
@@ -74,7 +75,11 @@ export function QuestionRow({ question }: QuestionRowProps) {
               adjustedVotes >= 0 ? "text-easy" : "text-hard",
             )}
           >
-            <ThumbsUp className="h-3.5 w-3.5" />
+            {adjustedVotes >= 0 ? (
+              <ThumbsUp className="h-3.5 w-3.5" />
+            ) : adjustedVotes < 0 ? (
+              <ThumbsDown className="h-3.5 w-3.5" />
+            ) : null}
             {formatVotes(adjustedVotes)}
           </div>
         </div>
@@ -102,21 +107,26 @@ export function QuestionRow({ question }: QuestionRowProps) {
         <Badge
           variant="outline"
           className={cn(
-            "justify-center font-medium capitalize",
+            "justify-center font-medium",
             typeColors.bg,
             typeColors.text,
             typeColors.border,
+            question.type === "sql" ? "uppercase" : "capitalize",
           )}
         >
           {question.type}
         </Badge>
         <div
           className={cn(
-            "flex items-center justify-center gap-1 text-sm font-semibold tabular-nums",
+            "flex items-center gap-1 text-sm font-semibold tabular-nums",
             adjustedVotes >= 0 ? "text-easy" : "text-hard",
           )}
         >
-          <ThumbsUp className="h-3.5 w-3.5" />
+          {adjustedVotes >= 0 ? (
+            <ThumbsUp className="h-3.5 w-3.5" />
+          ) : adjustedVotes < 0 ? (
+            <ThumbsDown className="h-3.5 w-3.5" />
+          ) : null}
           {formatVotes(adjustedVotes)}
         </div>
         <div className="flex items-center gap-1.5 text-sm text-muted-foreground min-w-0">
