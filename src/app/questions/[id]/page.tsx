@@ -2,6 +2,7 @@ import { ArrowLeft, Building2, Code2, Hash } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { BookmarkButton } from "@/components/bookmark-button";
 import { CodeEditor } from "@/components/code-editor";
 import { CompletionButton } from "@/components/completed-checkbox";
 import { Badge } from "@/components/ui/badge";
@@ -126,9 +127,10 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
                   </Badge>
                 </div>
 
-                {/* Completion Button */}
-                <div className="mt-4">
+                {/* Completion Button and Bookmark */}
+                <div className="mt-4 flex items-center gap-3">
                   <CompletionButton questionId={question.id} />
+                  <BookmarkButton questionId={question.id} size="md" />
                 </div>
               </div>
 

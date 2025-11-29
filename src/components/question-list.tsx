@@ -6,8 +6,10 @@ import { Filters, type StatusFilter } from "@/components/filters";
 import { QuestionRow } from "@/components/question-row";
 import { SearchBar } from "@/components/search-bar";
 import { type SortOption, SortSelect } from "@/components/sort-select";
+import { useBookmarkStore } from "@/stores/bookmark-store";
 import { useProgressStore } from "@/stores/progress-store";
 import type { Question } from "@/types/question";
+import { Button } from "./ui/button";
 
 interface QuestionListProps {
   questions: Question[];
@@ -24,6 +26,8 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
 
   // Get completed questions from store
   const completed = useProgressStore((state) => state.completed);
+  // Get bookmarked questions from store
+  const bookmarks = useBookmarkStore((state) => state.bookmarks);
 
   // Filter and sort questions
   const filteredQuestions = useMemo(() => {
@@ -45,6 +49,8 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
       result = result.filter((q) => completed[q.id] === true);
     } else if (status === "incomplete") {
       result = result.filter((q) => !completed[q.id]);
+    } else if (status === "bookmarked") {
+      result = result.filter((q) => bookmarks[q.id] === true);
     }
 
     // Difficulty filter
@@ -85,7 +91,17 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
     });
 
     return result;
-  }, [questions, search, difficulty, type, company, status, sort, completed]);
+  }, [
+    questions,
+    search,
+    difficulty,
+    type,
+    company,
+    status,
+    sort,
+    completed,
+    bookmarks,
+  ]);
 
   const handleSearchChange = useCallback((value: string) => {
     setSearch(value);
@@ -164,14 +180,14 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
                   </span>
                 )}
               </div>
-              <button
-                type="button"
+              <Button
                 onClick={handleClearFilters}
-                className="flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                variant={"outline"}
+                size={"sm"}
               >
                 <X className="h-3.5 w-3.5" />
                 Clear
-              </button>
+              </Button>
             </div>
           )}
         </div>
@@ -181,7 +197,8 @@ export function QuestionList({ questions, companies }: QuestionListProps) {
       {filteredQuestions.length > 0 ? (
         <div className="flex flex-col gap-3">
           {/* Desktop Header */}
-          <div className="hidden lg:grid lg:grid-cols-[24px_1fr_90px_140px_70px_220px] lg:gap-4 lg:px-5 lg:text-sm lg:font-medium lg:text-muted-foreground">
+          <div className="hidden lg:grid lg:grid-cols-[24px_24px_1fr_90px_140px_70px_220px] lg:gap-4 lg:px-5 lg:text-sm lg:font-medium lg:text-muted-foreground">
+            <span />
             <span />
             <span>Question</span>
             <span>Difficulty</span>

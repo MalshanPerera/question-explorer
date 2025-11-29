@@ -86,3 +86,25 @@ export function getAllTypes(): QuestionType[] {
   const types = new Set(questions.map((q) => q.type));
   return Array.from(types).sort() as QuestionType[];
 }
+
+/**
+ * Get a random question ID
+ * @param excludeIds Optional array of question IDs to exclude from selection
+ * @returns A random question ID, or undefined if no questions available
+ */
+export function getRandomQuestionId(excludeIds?: number[]): number | undefined {
+  const questions = getAllQuestions();
+  let availableQuestions = questions;
+
+  if (excludeIds && excludeIds.length > 0) {
+    const excludeSet = new Set(excludeIds);
+    availableQuestions = questions.filter((q) => !excludeSet.has(q.id));
+  }
+
+  if (availableQuestions.length === 0) {
+    return undefined;
+  }
+
+  const randomIndex = Math.floor(Math.random() * availableQuestions.length);
+  return availableQuestions[randomIndex].id;
+}

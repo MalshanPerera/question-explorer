@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Button } from "./ui/button";
 
 interface CodeEditorProps {
   defaultLanguage?: string;
@@ -139,13 +140,7 @@ export function CodeEditor({
           </Select>
         </div>
 
-        <button
-          type="button"
-          onClick={handleReset}
-          className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-        >
-          Reset
-        </button>
+        <Button onClick={handleReset}>Reset</Button>
       </div>
 
       {/* Editor */}
