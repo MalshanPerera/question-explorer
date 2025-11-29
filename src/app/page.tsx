@@ -1,6 +1,7 @@
 import { Code2, Sparkles } from "lucide-react";
 import { ProgressStats } from "@/components/progress-stats";
 import { QuestionList } from "@/components/question-list";
+import { RandomQuestionButton } from "@/components/random-question-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { getAllCompanies, getAllQuestions } from "@/lib/questions";
 
@@ -33,14 +34,17 @@ export default function HomePage() {
               </div>
               <ThemeToggle />
             </div>
-            <p className="max-w-2xl text-lg text-muted-foreground">
-              Browse and practice{" "}
-              <span className="font-semibold text-foreground">
-                {questions.length} interview questions
-              </span>{" "}
-              from top companies. Filter by difficulty, type, and company to
-              find your next challenge.
-            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-2xl text-lg text-muted-foreground">
+                Browse and practice{" "}
+                <span className="font-semibold text-foreground">
+                  {questions.length} interview questions
+                </span>{" "}
+                from top companies. Filter by difficulty, type, and company to
+                find your next challenge.
+              </p>
+              <RandomQuestionButton questionIds={questions.map((q) => q.id)} />
+            </div>
 
             {/* Stats Row */}
             <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">

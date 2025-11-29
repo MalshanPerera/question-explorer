@@ -10,7 +10,7 @@ import {
 import type { Difficulty, QuestionType } from "@/types/question";
 import { DIFFICULTY_LABELS, QUESTION_TYPES } from "@/types/question";
 
-export type StatusFilter = "all" | "completed" | "incomplete";
+export type StatusFilter = "all" | "completed" | "incomplete" | "bookmarked";
 
 interface FiltersProps {
   difficulty: string;
@@ -51,6 +51,7 @@ export function Filters({
           <SelectItem value="all">All Status</SelectItem>
           <SelectItem value="completed">Completed</SelectItem>
           <SelectItem value="incomplete">Incomplete</SelectItem>
+          <SelectItem value="bookmarked">Bookmarked</SelectItem>
         </SelectContent>
       </Select>
 

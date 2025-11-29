@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useProgressStore } from "@/stores/progress-store";
+import { Button } from "./ui/button";
 
 interface CompletedCheckboxProps {
   questionId: number;
@@ -111,8 +112,7 @@ export function CompletionButton({
   }
 
   return (
-    <button
-      type="button"
+    <Button
       onClick={() => toggleCompleted(questionId)}
       className={cn(
         "inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 active:scale-[0.98]",
@@ -133,6 +133,6 @@ export function CompletionButton({
         {isCompleted && <Check className="h-3 w-3 stroke-3" />}
       </div>
       {isCompleted ? "Completed" : "Mark Complete"}
-    </button>
+    </Button>
   );
 }

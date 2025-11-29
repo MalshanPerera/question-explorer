@@ -2,6 +2,7 @@
 
 import { ArrowRight, Building2, ThumbsDown, ThumbsUp } from "lucide-react";
 import Link from "next/link";
+import { BookmarkButton } from "@/components/bookmark-button";
 import { CompletedCheckbox } from "@/components/completed-checkbox";
 import { Badge } from "@/components/ui/badge";
 import { cn, formatVotes, getDifficultyColor, getTypeColor } from "@/lib/utils";
@@ -41,6 +42,7 @@ export function QuestionRow({ question }: QuestionRowProps) {
       <div className="flex flex-col gap-4 lg:hidden">
         <div className="flex items-start gap-3">
           <CompletedCheckbox questionId={question.id} size="sm" />
+          <BookmarkButton questionId={question.id} size="sm" />
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between gap-3">
               <h3
@@ -58,7 +60,7 @@ export function QuestionRow({ question }: QuestionRowProps) {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 pl-8">
+        <div className="flex flex-wrap items-center gap-2 pl-[72px]">
           <Badge
             variant="outline"
             className={cn(
@@ -84,7 +86,7 @@ export function QuestionRow({ question }: QuestionRowProps) {
           </Badge>
         </div>
 
-        <div className="flex items-center justify-between text-sm pl-8">
+        <div className="flex items-center justify-between text-sm pl-[72px]">
           <div className="flex items-center gap-1.5 text-muted-foreground">
             <Building2 className="h-3.5 w-3.5" />
             <span className="truncate max-w-[200px]">{question.company}</span>
@@ -106,8 +108,9 @@ export function QuestionRow({ question }: QuestionRowProps) {
       </div>
 
       {/* Desktop Layout */}
-      <div className="hidden lg:grid lg:grid-cols-[24px_1fr_90px_140px_70px_220px] lg:items-center lg:gap-4">
+      <div className="hidden lg:grid lg:grid-cols-[24px_24px_1fr_90px_140px_70px_220px] lg:items-center lg:gap-4">
         <CompletedCheckbox questionId={question.id} size="sm" />
+        <BookmarkButton questionId={question.id} size="sm" />
         <div className="flex items-center gap-3 min-w-0">
           <h3
             className={cn(
