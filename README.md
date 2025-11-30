@@ -9,6 +9,16 @@ A clean, modern web application for browsing and filtering interview questions. 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)
 
+## Screenshots
+
+### Main Page
+
+![Main Page](./docs/main-page.png)
+
+### Question Detail Page
+
+![Detail Page](./docs/detail-page.png)
+
 ## Features
 
 ### Core Features
@@ -91,6 +101,24 @@ src/
     └── question.ts       # Question type definitions
 ```
 
-## License
+## About
 
-MIT
+### What you built and Why?
+
+Question Explorer is a client-side interview question practice platform built to provide a clean, focused experience for developers preparing for technical interviews. The application emphasizes usability and performance, with features like code editing, progress tracking, and bookmarking to help users efficiently practice and organize their interview preparation.
+
+### What you'd add with more time
+
+If I had more time, I'd add more features like running your Python/SQL code, letting you share solutions with others, suggesting questions based on difficulty, and showing you cool stats about your practice habits. A backend would open up even more possibilities like user accounts, checking solutions, and building a community with discussion boards and solution reviews.
+
+### Any interesting technical decisions
+
+- Zustand handles state management, keeping things simple and persistent even without a backend.
+
+- The Monaco Editor gives you that familiar VS Code feel for coding.
+
+- Client-side CSV parsing at build time means super fast page loads since there's no runtime data fetching.
+
+- The component structure is super clear, with separate "stores" for votes, progress, and bookmarks, making it easy to maintain and expand.
+
+- Since this project doesn't have a ton of components, I've popped them all into a global components folder for now. But, we can definitely move them to local folders if they're only used in specific routes as the project grows!
