@@ -109,7 +109,23 @@ Question Explorer is a client-side interview question practice platform built to
 
 ### What you'd add with more time
 
-If I had more time, I'd add more features like running your Python/SQL code, letting you share solutions with others, suggesting questions based on difficulty, and showing you cool stats about your practice habits. A backend would open up even more possibilities like user accounts, checking solutions, and building a community with discussion boards and solution reviews.
+With more time, I would add:
+
+**Client-side enhancements:**
+
+- **Code execution sandbox** - Run Python/SQL code directly in the browser to test solutions
+- **Solution templates** - Pre-filled starter code for each question type to help users get started faster
+- **Progress tracking dashboard** - Visual charts showing completion rates by difficulty and question type
+- **Study streaks** - Track consecutive days of practice to build consistent habits
+- **Bookmarked collections** - Organize saved questions into custom study lists (e.g., "Week 1 Prep", "SQL Practice")
+- **Question notes** - Add personal notes and hints to questions for future reference
+
+**Backend-enabled features:**
+
+- **User authentication** - Secure accounts to sync progress across devices and enable personalized experiences
+- **Gamification system** - Points, badges, and leaderboards to motivate consistent practice and friendly competition
+- **Automated solution validation** - Real-time code execution and test case validation to verify correctness
+- **Community features** - Discussion boards for each question, solution sharing, and peer code reviews to learn from others
 
 ### Any interesting technical decisions
 
